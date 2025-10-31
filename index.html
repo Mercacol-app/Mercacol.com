@@ -482,6 +482,12 @@
                     <!-- Inicio del Panel de Productor -->
                     <h2 class="text-xl font-semibold text-gray-900 mb-4">Panel de Productor</h2>
 
+                    <!-- Panel de Saldo -->
+                    <div class="bg-white p-6 rounded-2xl shadow-xl mb-6 text-center">
+                        <p class="text-sm font-medium text-gray-500">Tu Saldo</p>
+                        <p class="text-4xl font-bold text-gray-900 mt-2">$500,000.00</p>
+                    </div>
+
                     <!-- Tarjeta de Productor Estilo Mastercard -->
                     <div class="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-2xl shadow-2xl p-6 mb-6">
                         <div class="flex justify-between items-start">
@@ -507,25 +513,40 @@
                     </div>
 
                     <!-- Acciones del Productor -->
-                    <div class="space-y-3 mt-6">
+                    <div class="space-y-4 mt-6">
                         <!-- Mi Cosecha -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:archive-box-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mi Cosecha" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mi Cosecha</span>
+                        <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                            <div class="p-3 bg-purple-100 rounded-full">
+                                <img src="https://api.iconify.design/heroicons:archive-box-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mi Cosecha" />
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="text-base font-semibold text-gray-900">Mi Cosecha</h3>
+                                <p class="text-sm text-gray-500">Gestionar mis cosechas</p>
+                            </div>
                             <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
+                        </div>
                         <!-- Proyección de Cosecha -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:chart-pie-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Proyección de Cosecha" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Proyección de Cosecha</span>
+                        <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                            <div class="p-3 bg-purple-100 rounded-full">
+                                <img src="https://api.iconify.design/heroicons:chart-pie-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Proyección de Cosecha" />
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="text-base font-semibold text-gray-900">Proyección de Cosecha</h3>
+                                <p class="text-sm text-gray-500">Planificar futuras cosechas</p>
+                            </div>
                             <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
+                        </div>
                         <!-- Mis Canjes -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:receipt-refund-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mis Canjes" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mis Canjes</span>
+                        <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                            <div class="p-3 bg-purple-100 rounded-full">
+                                <img src="https://api.iconify.design/heroicons:receipt-refund-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mis Canjes" />
+                            </div>
+                            <div class="ml-4 flex-1">
+                                <h3 class="text-base font-semibold text-gray-900">Mis Canjes</h3>
+                                <p class="text-sm text-gray-500">Ver historial de canjes</p>
+                            </div>
                             <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
+                        </div>
                     </div>
                 </div>
                 <div id="asociado-panel" class="hidden">
