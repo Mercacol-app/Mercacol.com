@@ -479,8 +479,54 @@
                     <p>Aquí iría el contenido específico para Tenderos...</p>
                 </div>
                 <div id="productor-panel" class="hidden">
-                     <h2 class="text-xl font-semibold text-gray-900 mb-4">Panel de Productor</h2>
-                    <p>Aquí iría el contenido específico para Productores...</p>
+                    <!-- Inicio del Panel de Productor -->
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Panel de Productor</h2>
+
+                    <!-- Tarjeta de Productor Estilo Mastercard -->
+                    <div class="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-2xl shadow-2xl p-6 mb-6">
+                        <div class="flex justify-between items-start">
+                            <span class="text-lg font-bold">Mercacol</span>
+                            <img src="https://api.iconify.design/logos:mastercard.svg?color=%23ffffff" class="h-10" alt="Mastercard Logo" />
+                        </div>
+                        <div class="mt-4">
+                            <img src="https://api.iconify.design/heroicons:chip-solid.svg?color=%23d1d5db" class="h-10 w-10 text-gray-400" alt="Chip" />
+                        </div>
+                        <div class="mt-4">
+                            <p class="text-sm text-gray-400">ID Productor</p>
+                            <p class="text-lg font-mono tracking-widest">MCL-PROD-12345</p>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-gray-400">Productor</p>
+                                <p class="font-semibold">Carlos A. Rodriguez</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-xs font-semibold text-green-400">✓ Verificado</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acciones del Productor -->
+                    <div class="space-y-3 mt-6">
+                        <!-- Mi Cosecha -->
+                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
+                            <img src="https://api.iconify.design/heroicons:archive-box-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mi Cosecha" />
+                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mi Cosecha</span>
+                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                        </button>
+                        <!-- Proyección de Cosecha -->
+                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
+                            <img src="https://api.iconify.design/heroicons:chart-pie-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Proyección de Cosecha" />
+                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Proyección de Cosecha</span>
+                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                        </button>
+                        <!-- Mis Canjes -->
+                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
+                            <img src="https://api.iconify.design/heroicons:receipt-refund-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mis Canjes" />
+                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mis Canjes</span>
+                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                        </button>
+                    </div>
                 </div>
                 <div id="asociado-panel" class="hidden">
                      <h2 class="text-xl font-semibold text-gray-900 mb-4">Panel de Asociado</h2>
@@ -694,4 +740,3 @@
     </script>
 </body>
 </html>
-
