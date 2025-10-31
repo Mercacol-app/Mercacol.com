@@ -52,6 +52,27 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
+        /* Animación para el logo de inicio de sesión */
+        @keyframes fill-and-move {
+            0% {
+                stroke: #FFFFFF;
+                transform: scale(1);
+            }
+            50% {
+                stroke: #4ade80; /* Verde intermedio */
+                transform: scale(1.1);
+            }
+            100% {
+                stroke: #22c55e; /* Verde final */
+                transform: scale(1);
+            }
+        }
+
+        .animated-logo {
+            /* Ejecuta la animación una vez al cargar */
+            animation: fill-and-move 1.5s ease-in-out forwards;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -67,7 +88,7 @@
             <div class="w-full bg-gradient-to-r from-purple-800 to-indigo-800 p-8 rounded-b-3xl shadow-lg flex-shrink-0 flex flex-col items-center pt-16">
                 
                 <!-- Logo de Carrito de Compras -->
-                <svg class="h-20 w-20 text-white mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <svg class="h-20 w-20 text-white mb-4 animated-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                     <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -137,7 +158,7 @@
             <div class="w-full bg-gradient-to-r from-purple-800 to-indigo-800 p-8 rounded-b-3xl shadow-lg flex-shrink-0 flex flex-col items-center pt-16">
                 
                 <!-- Logo de Carrito de Compras -->
-                <svg class="h-20 w-20 text-white mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                <svg class="h-20 w-20 text-white mb-4 animated-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
                     <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
@@ -306,6 +327,26 @@
                                 <p class="text-xl font-bold text-gray-900">45</p>
                             </div>
                         </div>
+                        <!-- Stat Card 3 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-lg flex items-center">
+                            <div class="p-3 bg-blue-100 rounded-full">
+                                <img src="https://api.iconify.design/heroicons:truck-solid.svg?color=%231e40af" class="h-6 w-6" alt="Pedidos en Ruta"/>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-500">Pedidos en Ruta</p>
+                                <p class="text-xl font-bold text-gray-900">8</p>
+                            </div>
+                        </div>
+                        <!-- Stat Card 4 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-lg flex items-center">
+                            <div class="p-3 bg-yellow-100 rounded-full">
+                                <img src="https://api.iconify.design/heroicons:check-circle-solid.svg?color=%23f59e0b" class="h-6 w-6" alt="Pedidos Entregados"/>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-gray-500">Pedidos Entregados</p>
+                                <p class="text-xl font-bold text-gray-900">37</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- NUEVO: Acciones Rápidas -->
@@ -327,23 +368,78 @@
 
                     <!-- Gestión de Roles (antes 'admin-panel' ahora 'admin-roles') -->
                     <div id="admin-roles">
-                        <!-- Contenido existente de gestión de roles -->
                         <h2 class="text-xl font-semibold text-gray-900 mb-4">Gestión de Roles</h2>
                         <div class="space-y-4">
-                            <!-- Tarjetas de gestión... -->
+                            <!-- Tarjeta de Gestión -->
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                                <div class="p-3 bg-purple-100 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:user-group-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Asociados" />
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="text-base font-semibold text-gray-900">Asociados</h3>
+                                    <p class="text-sm text-gray-500">Gestionar asociados</p>
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                            </div>
+
+                            <!-- Tarjeta de Gestión -->
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                                <div class="p-3 bg-purple-100 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:shopping-cart-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Tenderos" />
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="text-base font-semibold text-gray-900">Tenderos</h3>
+                                    <p class="text-sm text-gray-500">Gestionar pedidos y tiendas</p>
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                            </div>
+
+                            <!-- Tarjeta de Gestión -->
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                                <div class="p-3 bg-purple-100 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:globe-alt-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Productores" />
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="text-base font-semibold text-gray-900">Productores</h3>
+                                    <p class="text-sm text-gray-500">Ver cosechas y canjes</p>
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                            </div>
+
+                            <!-- Tarjeta de Gestión -->
+                            <div class="flex items-center p-4 bg-white rounded-2xl shadow-lg">
+                                <div class="p-3 bg-purple-100 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:user-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Personas" />
+                                </div>
+                                <div class="ml-4 flex-1">
+                                    <h3 class="text-base font-semibold text-gray-900">Personas Naturales</h3>
+                                    <p class="text-sm text-gray-500">Ver clientes</p>
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
+                            </div>
                         </div>
 
                         <!-- NUEVO: Sección de Análisis -->
                         <div id="admin-analytics" class="mt-6">
                             <h2 class="text-xl font-semibold text-gray-900 mb-4">Análisis</h2>
                             <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-white p-4 rounded-2xl shadow-lg">
-                                    <p class="text-sm font-medium text-gray-500">Usuarios Totales</p>
-                                    <p class="text-2xl font-bold text-gray-900">152</p>
+                                <div class="bg-white p-4 rounded-2xl shadow-lg flex items-center">
+                                    <div class="p-3 bg-gray-100 rounded-full">
+                                        <img src="https://api.iconify.design/heroicons:users-solid.svg?color=%234b5563" class="h-6 w-6" alt="Usuarios Totales"/>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-gray-500">Usuarios Totales</p>
+                                        <p class="text-xl font-bold text-gray-900">152</p>
+                                    </div>
                                 </div>
-                                <div class="bg-white p-4 rounded-2xl shadow-lg">
-                                    <p class="text-sm font-medium text-gray-500">Pedidos Totales</p>
-                                    <p class="text-2xl font-bold text-gray-900">320</p>
+                                <div class="bg-white p-4 rounded-2xl shadow-lg flex items-center">
+                                    <div class="p-3 bg-gray-100 rounded-full">
+                                        <img src="https://api.iconify.design/heroicons:archive-box-solid.svg?color=%234b5563" class="h-6 w-6" alt="Pedidos Totales"/>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-gray-500">Pedidos Totales</p>
+                                        <p class="text-xl font-bold text-gray-900">320</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
