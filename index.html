@@ -652,25 +652,47 @@
                     </div>
 
                     <!-- Acciones del Productor -->
-                    <div class="space-y-3 mt-6">
-                        <!-- Mi Cosecha -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:archive-box-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mi Cosecha" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mi Cosecha</span>
-                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
-                        <!-- Proyección de Cosecha -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:chart-pie-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Proyección de Cosecha" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Proyección de Cosecha</span>
-                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
-                        <!-- Mis Canjes -->
-                        <button class="w-full flex items-center p-4 bg-white rounded-2xl shadow-lg transition-transform hover:scale-105">
-                            <img src="https://api.iconify.design/heroicons:receipt-refund-solid.svg?color=%236b21a8" class="h-6 w-6 text-purple-800" alt="Mis Canjes" />
-                            <span class="ml-4 flex-1 text-left font-medium text-gray-800">Mis Canjes</span>
-                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%239ca3af" class="h-5 w-5 text-gray-400" alt="Ir" />
-                        </button>
+                    <div class="grid grid-cols-2 grid-rows-2 gap-4 mt-6 h-64">
+                        <!-- Mi Cosecha Card -->
+                        <div class="col-span-1 row-span-2 bg-lime-400 p-4 rounded-2xl shadow-lg flex flex-col justify-between text-black transition-transform hover:scale-105 cursor-pointer">
+                            <div>
+                                <div class="flex justify-between items-start">
+                                    <div class="w-10 h-10 bg-black bg-opacity-10 rounded-full flex items-center justify-center">
+                                        <img src="https://api.iconify.design/heroicons:squares-plus-solid.svg?color=%23000000" class="h-6 w-6" alt="Mi Cosecha" />
+                                    </div>
+                                    <img src="https://api.iconify.design/heroicons:arrow-up-right-20-solid.svg?color=%23000000" class="h-5 w-5" alt="Ir" />
+                                </div>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-lg">Mi Cosecha</h3>
+                            </div>
+                        </div>
+
+                        <!-- Proyección de Cosecha Card -->
+                        <div class="col-span-1 row-span-1 bg-purple-800 p-4 rounded-2xl shadow-lg flex flex-col justify-between text-white transition-transform hover:scale-105 cursor-pointer">
+                            <div class="flex justify-between items-start">
+                                <div class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center">
+                                    <img src="https://api.iconify.design/heroicons:chart-pie-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Proyección de Cosecha" />
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:arrow-up-right-20-solid.svg?color=%23ffffff" class="h-5 w-5" alt="Ir" />
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base">Proyección de Cosecha</h3>
+                            </div>
+                        </div>
+
+                        <!-- Mis Canjes Card -->
+                        <div class="col-span-1 row-span-1 bg-pink-400 p-4 rounded-2xl shadow-lg flex flex-col justify-between text-white transition-transform hover:scale-105 cursor-pointer">
+                            <div class="flex justify-between items-start">
+                                <div class="w-10 h-10 bg-white bg-opacity-10 rounded-full flex items-center justify-center">
+                                    <img src="https://api.iconify.design/heroicons:receipt-refund-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Mis Canjes" />
+                                </div>
+                                <img src="https://api.iconify.design/heroicons:arrow-up-right-20-solid.svg?color=%23ffffff" class="h-5 w-5" alt="Ir" />
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base">Mis Canjes</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="asociado-panel" class="hidden">
