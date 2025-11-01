@@ -90,13 +90,48 @@
             animation: cart-fly 0.7s ease-in forwards;
         }
 
-        /* Animación para la marquesina de precios */
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* --- Estilos Modernos para la Marquesina de Precios --- */
+        #price-ticker-container {
+            position: relative;
+            background: linear-gradient(90deg, #F3E8FF, #FFFFFF, #F3E8FF);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+
+        #price-ticker-container::before,
+        #price-ticker-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #price-ticker-container::before {
+            left: 0;
+            background: linear-gradient(to right, #FFFFFF, transparent);
+        }
+
+        #price-ticker-container::after {
+            right: 0;
+            background: linear-gradient(to left, #FFFFFF, transparent);
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-100% - 2rem)); /* 2rem es el gap */
+            }
+        }
+
         #price-ticker {
-            animation: marquee 20s linear infinite;
+            --gap: 2rem;
+            display: flex;
+            gap: var(--gap);
+            animation: scroll 30s linear infinite;
         }
     </style>
 </head>
@@ -174,6 +209,37 @@
             </div>
         </div>
 
+        <!-- ============================================= -->
+        <!--     PANTALLA DE REGISTRO (PASO 3 - TENDERO)   -->
+        <!-- ============================================= -->
+        <div id="screen-register-tendero" class="screen flex-col min-h-screen w-full p-6 pt-16">
+            <div class="bg-white p-8 rounded-3xl shadow-xl space-y-6 max-w-md mx-auto">
+                <h2 class="text-2xl font-bold text-gray-900 text-center">Información de la Tienda</h2>
+                <p class="text-center text-sm text-gray-500">Completa los datos de tu negocio.</p>
+
+                <form id="register-form-tendero" class="space-y-6">
+                    <div>
+                        <label for="register-store-name" class="block text-sm font-medium text-gray-700">Nombre de la Tienda</label>
+                        <input type="text" id="register-store-name" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500" required>
+                    </div>
+
+                    <div>
+                        <label for="register-store-address" class="block text-sm font-medium text-gray-700">Dirección</label>
+                        <input type="text" id="register-store-address" class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500" required>
+                    </div>
+
+                    <div class="pt-2">
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-purple-800 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                            Finalizar Registro
+                        </button>
+                    </div>
+                </form>
+            </div>
+             <button onclick="showScreen('screen-role-select')" class="mt-8 text-sm font-medium text-purple-700 hover:text-purple-600">
+                &larr; Volver a roles
+            </button>
+        </div>
+        
         <!-- ============================================= -->
         <!--   NUEVA PANTALLA DE REGISTRO (Estilo Login)   -->
         <!-- ============================================= -->
@@ -501,6 +567,25 @@
 
                 <!-- Paneles para otros roles (Ocultos por ahora) -->
                 <div id="tendero-panel" class="hidden">
+                    
+                    <!-- NUEVO: Tarjeta de Información del Tendero -->
+                    <div id="tendero-info-card" class="bg-gradient-to-br from-green-600 to-green-800 text-white rounded-2xl shadow-xl p-6 mb-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 id="tendero-store-name" class="text-2xl font-bold">Nombre de la Tienda</h3>
+                                <div class="flex items-center mt-1">
+                                    <img src="https://api.iconify.design/heroicons:map-pin-solid.svg?color=%23ffffff" class="h-4 w-4 mr-2" alt="Location Icon" />
+                                    <p id="tendero-store-address" class="text-sm text-green-100">Dirección de la Tienda</p>
+                                </div>
+                            </div>
+                            <img src="https://api.iconify.design/heroicons:building-storefront-solid.svg?color=%23ffffff" class="h-10 w-10" alt="Tienda Icon" />
+                        </div>
+                        <div class="border-t border-green-500 pt-4">
+                             <p class="text-sm text-green-100">Propietario</p>
+                             <p id="tendero-owner-name" class="font-semibold">Nombre del Tendero</p>
+                        </div>
+                    </div>
+
                     <!-- Header de la tienda -->
                     <div class="mb-6">
                         <h2 class="text-3xl font-bold text-gray-900">Mercado</h2>
@@ -674,7 +759,9 @@
         const appState = {
             userName: "Admin", // Nombre por defecto
             userRole: "Administrativo", // Rol por defecto
-            shoppingCart: [] // Carrito de compras
+            shoppingCart: [], // Carrito de compras
+            storeName: "",
+            storeAddress: ""
         };
 
         const sampleUsers = [
@@ -791,7 +878,6 @@
                             </p>
                             <button data-product-id="${product.id}" class="add-to-cart-btn relative w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-800 rounded-full hover:bg-purple-200 transition-colors">
                                 <img src="https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%236b21a8" class="h-6 w-6 cart-icon" alt="Agregar"/>
-                                <span class="cart-animation-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden">🛒</span>
                             </button>
                         </div>
                     </div>
@@ -808,14 +894,15 @@
             if (!ticker) return;
 
             // Duplicamos los productos para un bucle infinito y suave
-            const tickerItems = [...sampleProducts, ...sampleProducts];
-
-            ticker.innerHTML = tickerItems.map(p => `
-                <div class="flex-shrink-0 flex items-center px-4">
-                    <span class="font-semibold">${p.name}:</span>
-                    <span class="ml-2 font-bold text-green-600">${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(p.price)}</span>
+            const tickerContent = sampleProducts.map(p => `
+                <div class="flex-shrink-0 flex items-baseline p-4">
+                    <span class="font-semibold text-gray-800">${p.name}:</span>
+                    <span class="ml-2 font-bold text-purple-800 text-lg">${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(p.price)}</span>
                 </div>
             `).join('');
+            
+            // Se duplica el contenido para la animación infinita
+            ticker.innerHTML = `<div class="flex-shrink-0 flex">${tickerContent}</div><div class="flex-shrink-0 flex" aria-hidden="true">${tickerContent}</div>`;
         }
 
         /**
@@ -859,6 +946,7 @@
         // Referencias a elementos del DOM
         const loginForm = document.getElementById('login-form');
         const registerForm = document.getElementById('register-form');
+        const registerFormTendero = document.getElementById('register-form-tendero');
         const welcomeMessage = document.getElementById('welcome-message');
 
         // Paneles de roles
@@ -907,7 +995,13 @@
                     populateUserTable();
                     break;
                 case 'Tendero':
-                    if (tenderoPanel) tenderoPanel.classList.remove('hidden');
+                    if (tenderoPanel) {
+                        tenderoPanel.classList.remove('hidden');
+                        // Poblar la tarjeta de información del tendero
+                        document.getElementById('tendero-store-name').textContent = appState.storeName || 'Nombre de Tienda no disponible';
+                        document.getElementById('tendero-store-address').textContent = appState.storeAddress || 'Dirección no disponible';
+                        document.getElementById('tendero-owner-name').textContent = appState.userName || 'Tendero no disponible';
+                    }
                     renderProducts();
                     renderCategoryFilters();
                     renderPriceTicker();
@@ -954,6 +1048,18 @@
             showScreen('screen-role-select');
         });
 
+        // Manejar envío del formulario de registro de Tendero (Paso 3)
+        registerFormTendero.addEventListener('submit', (e) => {
+            e.preventDefault();
+            appState.storeName = document.getElementById('register-store-name').value;
+            appState.storeAddress = document.getElementById('register-store-address').value;
+
+            console.log('Tendero registrado:', appState);
+            
+            updateDashboard();
+            showScreen('screen-dashboard');
+        });
+
         /**
          * Maneja la selección de un rol durante el registro
          * @param {string} role El rol seleccionado
@@ -961,14 +1067,16 @@
         function selectRole(role) {
             // Guardar el rol seleccionado
             appState.userRole = role;
-            
-            // Simular finalización de registro
-            // En una app real, aquí se enviaría todo a la API
-            console.log('Usuario registrado:', appState.userName, appState.userRole);
-            
-            // Actualizar el dashboard y mostrarlo
-            updateDashboard();
-            showScreen('screen-dashboard');
+
+            if (role === 'Tendero') {
+                // Si es tendero, mostrar el formulario adicional
+                showScreen('screen-register-tendero');
+            } else {
+                // Para otros roles, finalizar el registro
+                console.log('Usuario registrado:', appState.userName, appState.userRole);
+                updateDashboard();
+                showScreen('screen-dashboard');
+            }
         }
 
         /**
@@ -1027,9 +1135,9 @@
                         <p class="text-sm text-gray-500">${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(item.price)}</p>
                     </div>
                     <div class="flex items-center">
-                        <button class="quantity-btn" data-item-id="${item.id}" data-action="decrease">-</button>
+                        <button class="quantity-btn bg-green-500 text-white rounded-md w-6 h-6 flex items-center justify-center" data-item-id="${item.id}" data-action="decrease">-</button>
                         <span class="w-12 text-center font-bold">${item.quantity}</span>
-                        <button class="quantity-btn" data-item-id="${item.id}" data-action="increase">+</button>
+                        <button class="quantity-btn bg-green-500 text-white rounded-md w-6 h-6 flex items-center justify-center" data-item-id="${item.id}" data-action="increase">+</button>
                         <p class="font-bold w-24 text-right">${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(itemTotal)}</p>
                     </div>
                 `;
@@ -1061,20 +1169,23 @@
                         const productId = parseInt(button.dataset.productId, 10);
                         addToCart(productId);
 
-                        // --- Animación ---
-                        button.classList.remove('bg-purple-100');
-                        button.classList.add('bg-green-500');
-                        const cartIcon = button.querySelector('.cart-animation-icon');
-                        if(cartIcon) {
-                            cartIcon.classList.add('fly');
-                            cartIcon.onanimationend = () => {
-                                cartIcon.classList.remove('fly');
-                            };
-                        }
+                        // --- Nueva Animación ---
+                        const icon = button.querySelector('img');
+                        
+                        // Cambiar a verde y mostrar icono de carrito
+                        button.classList.remove('bg-purple-100', 'hover:bg-purple-200');
+                        button.classList.add('bg-green-500', 'text-white');
+                        icon.src = `https://api.iconify.design/heroicons:shopping-cart-solid.svg?color=%23ffffff`;
+                        
+                        // Efecto de crecimiento
+                        button.style.transform = 'scale(1.1)';
 
+                        // Restaurar después de un tiempo
                         setTimeout(() => {
-                            button.classList.remove('bg-green-500');
-                            button.classList.add('bg-purple-100');
+                            button.classList.remove('bg-green-500', 'text-white');
+                            button.classList.add('bg-purple-100', 'hover:bg-purple-200');
+                            icon.src = `https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%236b21a8`;
+                            button.style.transform = 'scale(1)';
                         }, 1000);
                     }
                 });
