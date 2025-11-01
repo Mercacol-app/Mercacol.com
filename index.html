@@ -898,8 +898,8 @@
                             <p class="text-lg font-extrabold text-gray-900">${new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(product.price)}
                                 <span class="text-xs font-medium text-gray-500">/${product.unit}</span>
                             </p>
-                            <button data-product-id="${product.id}" class="add-to-cart-btn relative w-10 h-10 flex items-center justify-center bg-purple-100 text-purple-800 rounded-full hover:bg-purple-200 transition-colors">
-                                <img src="https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%236b21a8" class="h-6 w-6 cart-icon" alt="Agregar"/>
+                            <button data-product-id="${product.id}" class="add-to-cart-btn relative w-10 h-10 flex items-center justify-center bg-gradient-to-br from-purple-700 to-purple-900 text-white rounded-full transition-transform hover:scale-105">
+                                <img src="https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%23ffffff" class="h-6 w-6 cart-icon" alt="Agregar"/>
                             </button>
                         </div>
                     </div>
@@ -1194,19 +1194,19 @@
                         // --- Nueva Animación ---
                         const icon = button.querySelector('img');
                         
-                        // Cambiar a verde y mostrar icono de carrito
-                        button.classList.remove('bg-purple-100', 'hover:bg-purple-200');
-                        button.classList.add('bg-green-500', 'text-white');
+                        // Cambiar a verde neón degradado y mostrar icono de carrito
+                        button.classList.remove('from-purple-700', 'to-purple-900');
+                        button.classList.add('from-green-400', 'to-lime-400');
                         icon.src = `https://api.iconify.design/heroicons:shopping-cart-solid.svg?color=%23ffffff`;
                         
                         // Efecto de crecimiento
                         button.style.transform = 'scale(1.1)';
 
-                        // Restaurar después de un tiempo
+                        // Restaurar después de un tiempo al estado original (púrpura degradado)
                         setTimeout(() => {
-                            button.classList.remove('bg-green-500', 'text-white');
-                            button.classList.add('bg-purple-100', 'hover:bg-purple-200');
-                            icon.src = `https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%236b21a8`;
+                            button.classList.remove('from-green-400', 'to-lime-400');
+                            button.classList.add('from-purple-700', 'to-purple-900');
+                            icon.src = `https://api.iconify.design/heroicons:shopping-bag-solid.svg?color=%23ffffff`;
                             button.style.transform = 'scale(1)';
                         }, 1000);
                     }
