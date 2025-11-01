@@ -133,6 +133,15 @@
             gap: var(--gap);
             animation: scroll 30s linear infinite;
         }
+
+        /* --- Estilos para el nuevo carrusel --- */
+        #card-carousel {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        }
+        #card-carousel::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -696,93 +705,141 @@
                     </div>
                 </div>
                 <div id="asociado-panel" class="hidden">
-                    <!-- Carousel de Tarjetas -->
-                    <div class="relative h-56 mb-6">
-                        <div id="card-carousel" class="relative w-full h-full">
-                            <!-- Tarjeta Mastercard -->
-                            <div class="carousel-item absolute w-full transition-opacity duration-500 ease-in-out">
-                                <div class="bg-gradient-to-br from-gray-800 to-gray-900 text-white rounded-2xl shadow-2xl p-6 h-full flex flex-col justify-between">
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-lg font-bold">Mercacol</span>
-                                        <img src="https://api.iconify.design/logos:mastercard.svg" class="h-10" alt="Mastercard Logo" />
+                    <!-- ============================================= -->
+                    <!--     NUEVO PANEL DE ASOCIADO (DISEÑO)        -->
+                    <!-- ============================================= -->
+                    <style>
+                        .card-carousel-item {
+                            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+                        }
+                        .card-carousel-item.active {
+                            opacity: 1;
+                            transform: scale(1);
+                            z-index: 10;
+                        }
+                        .card-carousel-item:not(.active) {
+                            opacity: 0;
+                            transform: scale(0.95);
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                        }
+                        .benefit-card-hover {
+                            transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        }
+                        .benefit-card-hover:hover {
+                            transform: translateY(-5px);
+                            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                        }
+                    </style>
+
+                    <!-- Título -->
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-900">Tus Beneficios</h2>
+                    </div>
+
+                    <!-- Carrusel de Tarjetas -->
+                    <div id="asociado-card-carousel" class="relative h-56 mb-8">
+                        <!-- Tarjeta 1: Mastercard -->
+                        <div class="card-carousel-item active">
+                            <div class="relative h-56 rounded-2xl shadow-2xl p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+                                <!-- Fondo SVG decorativo -->
+                                <svg width="100%" height="100%" class="absolute top-0 left-0 opacity-10" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="p" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 50V0H0" fill="none" stroke="white" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(#p)"/></svg>
+                                <div class="relative z-10 flex justify-between items-start">
+                                    <span class="text-xl font-bold">Mercacol</span>
+                                    <img src="https://api.iconify.design/logos:mastercard.svg" class="h-12" alt="Mastercard Logo" />
+                                </div>
+                                <div class="relative z-10 text-center">
+                                    <p class="font-mono text-2xl tracking-widest">**** **** **** 1234</p>
+                                </div>
+                                <div class="relative z-10 flex justify-between items-end">
+                                    <div>
+                                        <p class="text-xs text-gray-400">Asociado</p>
+                                        <p class="font-semibold" id="asociado-card-name-1">Nombre Asociado</p>
                                     </div>
-                                    <div class="text-center">
-                                        <p class="text-sm text-gray-400">Balance Total</p>
-                                        <p class="text-3xl font-bold">$1,250,000</p>
-                                    </div>
-                                    <div class="flex justify-between items-end">
-                                        <p class="font-mono text-sm tracking-widest">**** **** **** 1234</p>
-                                        <p class="text-xs">12/28</p>
+                                    <div class="text-right">
+                                        <p class="text-xs text-gray-400">Expira</p>
+                                        <p class="font-semibold">12/28</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Tarjeta Visa -->
-                            <div class="carousel-item absolute w-full transition-opacity duration-500 ease-in-out opacity-0">
-                                <div class="bg-gradient-to-br from-purple-700 to-purple-900 text-white rounded-2xl shadow-2xl p-6 h-full flex flex-col justify-between">
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-lg font-bold">Mercacol</span>
-                                        <img src="https://api.iconify.design/logos:visa.svg" class="h-8" alt="Visa Logo" />
+                        </div>
+
+                        <!-- Tarjeta 2: Visa -->
+                        <div class="card-carousel-item">
+                            <div class="relative h-56 rounded-2xl shadow-2xl p-6 flex flex-col justify-between overflow-hidden bg-gradient-to-br from-purple-700 to-purple-900 text-white">
+                                <!-- Fondo SVG decorativo -->
+                                <svg width="100%" height="100%" class="absolute top-0 left-0 opacity-20" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="q" width="40" height="40" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><path d="M0 20h40" fill="none" stroke="white" stroke-width="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(#q)"/></svg>
+                                <div class="relative z-10 flex justify-between items-start">
+                                    <span class="text-xl font-bold">Mercacol</span>
+                                    <img src="https://api.iconify.design/logos:visa.svg" class="h-8" alt="Visa Logo" />
+                                </div>
+                                <div class="relative z-10 text-center">
+                                    <p class="font-mono text-2xl tracking-widest">**** **** **** 5678</p>
+                                </div>
+                                <div class="relative z-10 flex justify-between items-end">
+                                    <div>
+                                        <p class="text-xs text-purple-200">Asociado</p>
+                                        <p class="font-semibold" id="asociado-card-name-2">Nombre Asociado</p>
                                     </div>
-                                    <div class="text-center">
-                                        <p class="text-sm text-purple-200">Puntos Disponibles</p>
-                                        <p class="text-3xl font-bold">7,500 Puntos</p>
-                                    </div>
-                                    <div class="flex justify-between items-end">
-                                        <p class="font-mono text-sm tracking-widest">**** **** **** 5678</p>
-                                        <p class="text-xs">08/27</p>
+                                    <div class="text-right">
+                                        <p class="text-xs text-purple-200">Expira</p>
+                                        <p class="font-semibold">08/27</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Indicadores del Carousel -->
-                    <div id="carousel-indicators" class="flex justify-center space-x-2 mb-8">
-                        <button class="w-2 h-2 bg-gray-400 rounded-full"></button>
-                        <button class="w-2 h-2 bg-gray-300 rounded-full"></button>
+                    <!-- Indicadores del Carrusel -->
+                    <div id="asociado-carousel-indicators" class="flex justify-center space-x-2 mb-8">
+                        <button data-index="0" class="w-2.5 h-2.5 bg-gray-800 rounded-full transition-all"></button>
+                        <button data-index="1" class="w-2.5 h-2.5 bg-gray-300 rounded-full transition-all"></button>
                     </div>
 
-                    <!-- Tarjetas de Beneficios -->
+                    <!-- Tarjetas de Beneficios Profesionales -->
                     <div class="space-y-4">
-                        <h2 class="text-xl font-semibold text-gray-900">Tus Beneficios</h2>
                         <!-- Cupón -->
-                        <div class="bg-gradient-to-r from-green-400 to-lime-400 p-4 rounded-2xl shadow-lg flex items-center justify-between text-black">
-                            <div class="flex items-center">
-                                <div class="p-2 bg-white/20 rounded-full">
-                                    <img src="https://api.iconify.design/heroicons:ticket-solid.svg?color=%23000000" class="h-6 w-6" alt="Cupón" />
+                        <div class="benefit-card-hover bg-gradient-to-br from-green-400 to-lime-400 p-5 rounded-2xl shadow-lg flex items-center justify-between text-black">
+                             <div class="flex items-center">
+                                <div class="p-3 bg-white/30 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:ticket-solid.svg?color=%23000000" class="h-7 w-7" alt="Cupón" />
                                 </div>
                                 <div class="ml-4">
-                                    <h3 class="font-bold">Cupones</h3>
-                                    <p class="text-sm">5 disponibles</p>
+                                    <h3 class="font-bold text-lg">Cupones Exclusivos</h3>
+                                    <p class="text-sm opacity-80">5 disponibles para redimir</p>
                                 </div>
                             </div>
-                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23000000" class="h-5 w-5" alt="Ir" />
+                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23000000" class="h-6 w-6" alt="Ir" />
                         </div>
+
                         <!-- Beneficios -->
-                        <div class="bg-gradient-to-r from-purple-700 to-purple-900 p-4 rounded-2xl shadow-lg flex items-center justify-between text-white">
+                        <div class="benefit-card-hover bg-gradient-to-br from-purple-700 to-purple-900 p-5 rounded-2xl shadow-lg flex items-center justify-between text-white">
                             <div class="flex items-center">
-                                <div class="p-2 bg-white/20 rounded-full">
-                                    <img src="https://api.iconify.design/heroicons:gift-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Beneficios" />
+                                <div class="p-3 bg-white/20 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:gift-solid.svg?color=%23ffffff" class="h-7 w-7" alt="Beneficios" />
                                 </div>
                                 <div class="ml-4">
-                                    <h3 class="font-bold">Beneficios</h3>
-                                    <p class="text-sm">Accede a descuentos</p>
+                                    <h3 class="font-bold text-lg">Club de Beneficios</h3>
+                                    <p class="text-sm opacity-80">Accede a descuentos únicos</p>
                                 </div>
                             </div>
-                           <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23ffffff" class="h-5 w-5" alt="Ir" />
+                           <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Ir" />
                         </div>
+
                         <!-- Ofertas -->
-                        <div class="bg-gradient-to-r from-pink-500 to-rose-500 p-4 rounded-2xl shadow-lg flex items-center justify-between text-white">
-                            <div class="flex items-center">
-                                <div class="p-2 bg-white/20 rounded-full">
-                                    <img src="https://api.iconify.design/heroicons:sparkles-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Ofertas" />
+                        <div class="benefit-card-hover bg-gradient-to-br from-pink-500 to-rose-500 p-5 rounded-2xl shadow-lg flex items-center justify-between text-white">
+                           <div class="flex items-center">
+                                <div class="p-3 bg-white/20 rounded-full">
+                                    <img src="https://api.iconify.design/heroicons:sparkles-solid.svg?color=%23ffffff" class="h-7 w-7" alt="Ofertas" />
                                 </div>
                                 <div class="ml-4">
-                                    <h3 class="font-bold">Ofertas Exclusivas</h3>
-                                    <p class="text-sm">Productos seleccionados</p>
+                                    <h3 class="font-bold text-lg">Ofertas de Temporada</h3>
+                                    <p class="text-sm opacity-80">Productos seleccionados para ti</p>
                                 </div>
                             </div>
-                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23ffffff" class="h-5 w-5" alt="Ir" />
+                            <img src="https://api.iconify.design/heroicons:chevron-right-20-solid.svg?color=%23ffffff" class="h-6 w-6" alt="Ir" />
                         </div>
                     </div>
                 </div>
@@ -1119,7 +1176,12 @@
                     if (productorPanel) productorPanel.classList.remove('hidden');
                     break;
                 case 'Asociado':
-                    if (asociadoPanel) asociadoPanel.classList.remove('hidden');
+                    if (asociadoPanel) {
+                        asociadoPanel.classList.remove('hidden');
+                        // Actualizar el nombre del asociado en las tarjetas
+                        document.getElementById('asociado-card-name-1').textContent = appState.userName;
+                        document.getElementById('asociado-card-name-2').textContent = appState.userName;
+                    }
                     break;
                 case 'Persona Natural':
                     if (personaPanel) personaPanel.classList.remove('hidden');
@@ -1260,55 +1322,59 @@
          * Sets up all the main event listeners for the application.
          */
         function setupEventListeners() {
-            // --- Card Carousel Logic ---
-            const carouselItems = document.querySelectorAll('.carousel-item');
-            const indicators = document.querySelectorAll('#carousel-indicators button');
-            let currentIndex = 0;
-            let carouselInterval;
+            // --- Lógica del Carrusel de Tarjetas de Asociado (Nuevo) ---
+            const asociadoCarousel = document.getElementById('asociado-card-carousel');
+            if (asociadoCarousel) {
+                const items = asociadoCarousel.querySelectorAll('.card-carousel-item');
+                const indicators = document.querySelectorAll('#asociado-carousel-indicators button');
+                let currentIndex = 0;
+                let intervalId;
 
-            function updateCarousel(index) {
-                // Ocultar todos los items
-                carouselItems.forEach((item, i) => {
-                    item.classList.add('opacity-0');
+                function showItem(index) {
+                    items.forEach((item, i) => {
+                        item.classList.toggle('active', i === index);
+                    });
+                    indicators.forEach((indicator, i) => {
+                        indicator.classList.toggle('bg-gray-800', i === index);
+                        indicator.classList.toggle('bg-gray-300', i !== index);
+                    });
+                    currentIndex = index;
+                }
+
+                function startCarousel() {
+                    stopCarousel(); // Asegurarse de que no haya múltiples intervalos
+                    intervalId = setInterval(() => {
+                        const nextIndex = (currentIndex + 1) % items.length;
+                        showItem(nextIndex);
+                    }, 4000); // Cambia cada 4 segundos
+                }
+
+                function stopCarousel() {
+                    clearInterval(intervalId);
+                }
+
+                indicators.forEach(indicator => {
+                    indicator.addEventListener('click', () => {
+                        stopCarousel();
+                        showItem(parseInt(indicator.dataset.index, 10));
+                        startCarousel(); // Reiniciar el temporizador después del clic manual
+                    });
                 });
-                // Mostrar el item activo
-                carouselItems[index].classList.remove('opacity-0');
 
-                // Actualizar indicadores
-                indicators.forEach((indicator, i) => {
-                    if (i === index) {
-                        indicator.classList.remove('bg-gray-300');
-                        indicator.classList.add('bg-gray-400');
-                    } else {
-                        indicator.classList.remove('bg-gray-400');
-                        indicator.classList.add('bg-gray-300');
-                    }
+                // Iniciar el carrusel cuando el panel de asociado se vuelve visible
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.attributeName === 'class' && !asociadoPanel.classList.contains('hidden')) {
+                            startCarousel();
+                        } else {
+                            stopCarousel();
+                        }
+                    });
                 });
-                currentIndex = index;
-            }
 
-            function startCarousel() {
-                carouselInterval = setInterval(() => {
-                    const nextIndex = (currentIndex + 1) % carouselItems.length;
-                    updateCarousel(nextIndex);
-                }, 5000); // Cambia de tarjeta cada 5 segundos
-            }
-
-            function stopCarousel() {
-                clearInterval(carouselInterval);
-            }
-
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    stopCarousel(); // Detener el ciclo automático al hacer clic manual
-                    updateCarousel(index);
-                    startCarousel(); // Reiniciar el ciclo
-                });
-            });
-
-            // Iniciar el carrusel si los elementos existen
-            if (carouselItems.length > 0) {
-                 startCarousel();
+                if (asociadoPanel) {
+                    observer.observe(asociadoPanel, { attributes: true });
+                }
             }
 
             const cartButton = document.getElementById('cart-button');
