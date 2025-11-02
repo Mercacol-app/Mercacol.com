@@ -142,6 +142,60 @@
         #card-carousel::-webkit-scrollbar {
             display: none; /* Safari and Chrome */
         }
+
+        /* --- Estilos para el Nuevo Menú de Navegación --- */
+        .nav-button {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 5rem; /* 80px */
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button .icon-inactive,
+        .nav-button .icon-active {
+            width: 1.75rem; /* 28px */
+            height: 1.75rem; /* 28px */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-button .nav-text {
+            position: absolute;
+            bottom: 32px;
+            font-size: 0.75rem; /* 12px */
+            font-weight: 500;
+            color: white;
+            opacity: 0;
+            transform: translateY(5px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Estado inactivo por defecto */
+        .nav-button .icon-active {
+            display: none;
+        }
+
+        /* Estado activo */
+        .nav-button.active .icon-inactive {
+            display: none;
+        }
+
+        .nav-button.active .icon-active {
+            display: block;
+            transform: translateY(-8px); /* Mueve el icono hacia arriba */
+        }
+        
+        .nav-button.active .nav-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -849,37 +903,51 @@
                 </div>
             </main>
 
-            <!-- Menú de Navegación Fijo (Inspirado en la imagen) -->
-            <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto h-20 bg-white rounded-t-3xl shadow-[0_-5px_20px_rgba(0,0,0,0.1)] flex justify-around items-center px-6">
-                
-                <!-- Botón Izquierda 1 -->
-                <button class="flex flex-col items-center justify-center text-gray-500 hover:text-purple-700">
-                    <img src="https://api.iconify.design/heroicons:home-solid.svg?color=%236b21a8" class="h-6 w-6" alt="Inicio" />
-                    <span class="text-xs font-medium text-purple-700">Inicio</span>
-                </button>
+            <!-- ============================================= -->
+            <!--        NUEVO MENÚ DE NAVEGACIÓN INFERIOR      -->
+            <!-- ============================================= -->
+            <nav id="bottom-navigation" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto h-24 bg-white/80 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.1)]">
+                <div id="nav-wrapper" class="relative h-full flex justify-around items-center px-4">
+                    
+                    <!-- Píldora de Resalte (se moverá con JS) -->
+                    <div id="nav-pill" class="absolute top-1/2 left-0 h-12 w-20 bg-gradient-to-br from-purple-700 to-purple-900 rounded-full transform -translate-y-1/2 transition-all duration-300 ease-in-out"></div>
 
-                <!-- Botón Izquierda 2 -->
-                <button class="flex flex-col items-center justify-center text-gray-500 hover:text-purple-700">
-                    <img src="https://api.iconify.design/heroicons:chart-bar.svg?color=%236b7280" class="h-6 w-6" alt="Reportes" />
-                    <span class="text-xs font-medium">Reportes</span>
-                </button>
+                    <!-- Botón 1: Inicio (Activo por defecto) -->
+                    <button class="nav-button active" data-target="inicio">
+                        <img class="icon-inactive" src="https://api.iconify.design/solar:home-2-outline.svg?color=%234b5563" alt="Inicio" />
+                        <img class="icon-active" src="https://api.iconify.design/solar:home-2-bold.svg?color=%23ffffff" alt="Inicio Activo" />
+                        <span class="nav-text">Inicio</span>
+                    </button>
 
-                <!-- Botón Central Prominente -->
-                <button class="w-16 h-16 rounded-full nav-center-button flex items-center justify-center text-white relative -top-6 shadow-xl">
-                    <img src="https://api.iconify.design/heroicons:arrows-right-left-20-solid.svg?color=%23ffffff" class="h-8 w-8" alt="Canjear" />
-                </button>
+                    <!-- Botón 2: Reportes -->
+                    <button class="nav-button" data-target="reportes">
+                        <img class="icon-inactive" src="https://api.iconify.design/solar:chart-outline.svg?color=%234b5563" alt="Reportes" />
+                        <img class="icon-active" src="https://api.iconify.design/solar:chart-bold.svg?color=%23ffffff" alt="Reportes Activo" />
+                        <span class="nav-text">Reportes</span>
+                    </button>
 
-                <!-- Botón Derecha 1 -->
-                <button class="flex flex-col items-center justify-center text-gray-500 hover:text-purple-700">
-                    <img src="https://api.iconify.design/heroicons:building-storefront.svg?color=%236b7280" class="h-6 w-6" alt="Tienda" />
-                    <span class="text-xs font-medium">Tienda</span>
-                </button>
-                
-                <!-- Botón Derecha 2 -->
-                <button class="flex flex-col items-center justify-center text-gray-500 hover:text-purple-700">
-                    <img src="https://api.iconify.design/heroicons:user-circle.svg?color=%236b7280" class="h-6 w-6" alt="Perfil" />
-                    <span class="text-xs font-medium">Perfil</span>
-                </button>
+                    <!-- Botón 3: Canjear -->
+                    <button class="nav-button" data-target="canjear">
+                        <img class="icon-inactive" src="https://api.iconify.design/solar:refresh-circle-outline.svg?color=%234b5563" alt="Canjear" />
+                        <img class="icon-active" src="https://api.iconify.design/solar:refresh-circle-bold.svg?color=%23ffffff" alt="Canjear Activo" />
+                        <span class="nav-text">Canjear</span>
+                    </button>
+                    
+                    <!-- Botón 4: Tienda -->
+                    <button class="nav-button" data-target="tienda">
+                        <img class="icon-inactive" src="https://api.iconify.design/solar:shop-outline.svg?color=%234b5563" alt="Tienda" />
+                        <img class="icon-active" src="https://api.iconify.design/solar:shop-bold.svg?color=%23ffffff" alt="Tienda Activa" />
+                        <span class="nav-text">Tienda</span>
+                    </button>
+
+                    <!-- Botón 5: Perfil -->
+                    <button class="nav-button" data-target="perfil">
+                        <img class="icon-inactive" src="https://api.iconify.design/solar:user-circle-outline.svg?color=%234b5563" alt="Perfil" />
+                        <img class="icon-active" src="https://api.iconify.design/solar:user-circle-bold.svg?color=%23ffffff" alt="Perfil Activo" />
+                        <span class="nav-text">Perfil</span>
+                    </button>
+
+                </div>
             </nav>
         </div>
 
@@ -1460,6 +1528,55 @@
         document.addEventListener('DOMContentLoaded', () => {
             setupEventListeners();
             showScreen('screen-login');
+            
+            // --- Lógica para el Nuevo Menú de Navegación ---
+            const navWrapper = document.getElementById('nav-wrapper');
+            const navPill = document.getElementById('nav-pill');
+            const navButtons = document.querySelectorAll('.nav-button');
+
+            function movePill(button, animateColor = false) {
+                if (!button) return;
+                
+                // Calcular la posición del botón activo
+                const buttonRect = button.getBoundingClientRect();
+                const wrapperRect = navWrapper.getBoundingClientRect();
+                const pillPosition = buttonRect.left - wrapperRect.left + (buttonRect.width - navPill.offsetWidth) / 2;
+
+                // Mover la píldora
+                navPill.style.transform = `translateX(${pillPosition}px) translateY(-50%)`;
+                
+                if (animateColor) {
+                    // 1. Cambiar a verde inmediatamente
+                    navPill.classList.remove('from-purple-700', 'to-purple-900');
+                    navPill.classList.add('from-green-400', 'to-lime-400');
+
+                    // 2. Después de que termine la animación de deslizamiento (300ms), volver a morado
+                    setTimeout(() => {
+                        navPill.classList.remove('from-green-400', 'to-lime-400');
+                        navPill.classList.add('from-purple-700', 'to-purple-900');
+                    }, 300);
+                }
+
+                // Actualizar clases de los botones (íconos y texto)
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            }
+
+            // Inicializar en el primer botón sin animación de color
+            const activeButton = document.querySelector('.nav-button.active');
+            if (activeButton) {
+                // Usar un pequeño timeout para asegurar que el layout esté calculado
+                setTimeout(() => movePill(activeButton, false), 100);
+            }
+
+            // Event listener para los clics con animación de color
+            navWrapper.addEventListener('click', (e) => {
+                const clickedButton = e.target.closest('.nav-button');
+                // Evitar re-animar el botón que ya está activo
+                if (clickedButton && !clickedButton.classList.contains('active')) { 
+                    movePill(clickedButton, true);
+                }
+            });
         });
 
     </script>
