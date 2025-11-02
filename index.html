@@ -168,7 +168,7 @@
 
         .nav-button .nav-text {
             position: absolute;
-            bottom: 32px;
+            bottom: 28px;
             font-size: 0.75rem; /* 12px */
             font-weight: 500;
             color: white;
@@ -427,11 +427,11 @@
         <!-- ============================================= -->
         <!--            PANTALLA PRINCIPAL (DASHBOARD)     -->
         <!-- ============================================= -->
-        <div id="screen-dashboard" class="screen flex-col pb-24">
+        <div id="screen-dashboard" class="screen flex-col h-screen">
             
             <!-- Header (Fijo en la parte superior del Dashboard) -->
-            <header class="sticky top-0 z-10 p-6 bg-gradient-to-r from-purple-800 to-indigo-800 rounded-b-3xl shadow-lg">
-                <div class="flex justify-between items-center mb-4">
+            <header class="flex-shrink-0 z-10 p-6 bg-gradient-to-r from-purple-800 to-indigo-800 rounded-b-3xl shadow-lg">
+                <div class="flex justify-between items-center">
                     <div>
                         <p class="text-sm text-purple-200">Bienvenido,</p>
                         <h1 id="welcome-message" class="text-2xl font-bold text-white">Hola Administrativo</h1>
@@ -447,8 +447,8 @@
                 </div>
             </header>
 
-            <!-- Contenido del Panel -->
-            <main class="p-6">
+            <!-- Contenido del Panel (Scrollable) -->
+            <main class="flex-grow overflow-y-auto p-6 pb-24">
                 
                 <!-- Panel Administrativo: Contiene TODO lo del admin -->
                 <div id="admin-panel">
