@@ -902,53 +902,13 @@
                     <p>Aquí iría el contenido específico para Personas Naturales...</p>
                 </div>
             </main>
+        </div>
 
-            <!-- ============================================= -->
-            <!--        NUEVO MENÚ DE NAVEGACIÓN INFERIOR      -->
-            <!-- ============================================= -->
-            <nav id="bottom-navigation" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto h-24 bg-white/80 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.1)]">
-                <div id="nav-wrapper" class="relative h-full flex justify-around items-center px-4">
-                    
-                    <!-- Píldora de Resalte (se moverá con JS) -->
-                    <div id="nav-pill" class="absolute top-1/2 left-0 h-12 w-20 bg-gradient-to-br from-purple-700 to-purple-900 rounded-full transform -translate-y-1/2 transition-all duration-300 ease-in-out"></div>
-
-                    <!-- Botón 1: Inicio (Activo por defecto) -->
-                    <button class="nav-button active" data-target="inicio">
-                        <img class="icon-inactive" src="https://api.iconify.design/solar:home-2-outline.svg?color=%234b5563" alt="Inicio" />
-                        <img class="icon-active" src="https://api.iconify.design/solar:home-2-bold.svg?color=%23ffffff" alt="Inicio Activo" />
-                        <span class="nav-text">Inicio</span>
-                    </button>
-
-                    <!-- Botón 2: Reportes -->
-                    <button class="nav-button" data-target="reportes">
-                        <img class="icon-inactive" src="https://api.iconify.design/solar:chart-outline.svg?color=%234b5563" alt="Reportes" />
-                        <img class="icon-active" src="https://api.iconify.design/solar:chart-bold.svg?color=%23ffffff" alt="Reportes Activo" />
-                        <span class="nav-text">Reportes</span>
-                    </button>
-
-                    <!-- Botón 3: Canjear -->
-                    <button class="nav-button" data-target="canjear">
-                        <img class="icon-inactive" src="https://api.iconify.design/solar:refresh-circle-outline.svg?color=%234b5563" alt="Canjear" />
-                        <img class="icon-active" src="https://api.iconify.design/solar:refresh-circle-bold.svg?color=%23ffffff" alt="Canjear Activo" />
-                        <span class="nav-text">Canjear</span>
-                    </button>
-                    
-                    <!-- Botón 4: Tienda -->
-                    <button class="nav-button" data-target="tienda">
-                        <img class="icon-inactive" src="https://api.iconify.design/solar:shop-outline.svg?color=%234b5563" alt="Tienda" />
-                        <img class="icon-active" src="https://api.iconify.design/solar:shop-bold.svg?color=%23ffffff" alt="Tienda Activa" />
-                        <span class="nav-text">Tienda</span>
-                    </button>
-
-                    <!-- Botón 5: Perfil -->
-                    <button class="nav-button" data-target="perfil">
-                        <img class="icon-inactive" src="https://api.iconify.design/solar:user-circle-outline.svg?color=%234b5563" alt="Perfil" />
-                        <img class="icon-active" src="https://api.iconify.design/solar:user-circle-bold.svg?color=%23ffffff" alt="Perfil Activo" />
-                        <span class="nav-text">Perfil</span>
-                    </button>
-
-                </div>
-            </nav>
+        <!-- ============================================= -->
+        <!--            PANTALLA DE LA TIENDA (IFRAME)     -->
+        <!-- ============================================= -->
+        <div id="screen-store" class="screen flex-col h-screen bg-white">
+            <iframe id="store-iframe" class="w-full h-full border-none" src=""></iframe>
         </div>
 
         <!-- ============================================= -->
@@ -986,6 +946,52 @@
             </footer>
         </div>
 
+        <!-- ============================================= -->
+        <!--        NUEVO MENÚ DE NAVEGACIÓN INFERIOR      -->
+        <!-- ============================================= -->
+        <nav id="bottom-navigation" class="hidden fixed bottom-0 left-0 right-0 max-w-md mx-auto h-24 bg-white/80 backdrop-blur-lg rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.1)] z-20">
+            <div id="nav-wrapper" class="relative h-full flex justify-around items-center px-4">
+
+                <!-- Píldora de Resalte (se moverá con JS) -->
+                <div id="nav-pill" class="absolute top-1/2 left-0 h-12 w-20 bg-gradient-to-br from-purple-700 to-purple-900 rounded-full transform -translate-y-1/2 transition-all duration-300 ease-in-out"></div>
+
+                <!-- Botón 1: Inicio (Activo por defecto) -->
+                <button class="nav-button active" data-target="inicio">
+                    <img class="icon-inactive" src="https://api.iconify.design/solar:home-2-outline.svg?color=%234b5563" alt="Inicio" />
+                    <img class="icon-active" src="https://api.iconify.design/solar:home-2-bold.svg?color=%23ffffff" alt="Inicio Activo" />
+                    <span class="nav-text">Inicio</span>
+                </button>
+
+                <!-- Botón 2: Reportes -->
+                <button class="nav-button" data-target="reportes">
+                    <img class="icon-inactive" src="https://api.iconify.design/solar:chart-outline.svg?color=%234b5563" alt="Reportes" />
+                    <img class="icon-active" src="https://api.iconify.design/solar:chart-bold.svg?color=%23ffffff" alt="Reportes Activo" />
+                    <span class="nav-text">Reportes</span>
+                </button>
+
+                <!-- Botón 3: Canjear -->
+                <button class="nav-button" data-target="canjear">
+                    <img class="icon-inactive" src="https://api.iconify.design/solar:refresh-circle-outline.svg?color=%234b5563" alt="Canjear" />
+                    <img class="icon-active" src="https://api.iconify.design/solar:refresh-circle-bold.svg?color=%23ffffff" alt="Canjear Activo" />
+                    <span class="nav-text">Canjear</span>
+                </button>
+
+                <!-- Botón 4: Tienda -->
+                <button class="nav-button" data-target="tienda">
+                    <img class="icon-inactive" src="https://api.iconify.design/solar:shop-outline.svg?color=%234b5563" alt="Tienda" />
+                    <img class="icon-active" src="https://api.iconify.design/solar:shop-bold.svg?color=%23ffffff" alt="Tienda Activa" />
+                    <span class="nav-text">Tienda</span>
+                </button>
+
+                <!-- Botón 5: Perfil -->
+                <button class="nav-button" data-target="perfil">
+                    <img class="icon-inactive" src="https://api.iconify.design/solar:user-circle-outline.svg?color=%234b5563" alt="Perfil" />
+                    <img class="icon-active" src="https://api.iconify.design/solar:user-circle-bold.svg?color=%23ffffff" alt="Perfil Activo" />
+                    <span class="nav-text">Perfil</span>
+                </button>
+
+            </div>
+        </nav>
     </div>
 
     <script>
@@ -1207,6 +1213,19 @@
                 // Usamos flex para las pantallas que lo necesitan (login, dashboard, etc.)
                 screenToShow.style.display = 'flex'; 
                 screenToShow.classList.add('active');
+            }
+
+            // Controlar la visibilidad de la barra de navegación
+            const nav = document.getElementById('bottom-navigation');
+            if (screenId === 'screen-dashboard' || screenId === 'screen-store') {
+                nav.classList.remove('hidden');
+                // Ajustar padding para que el contenido no quede debajo de la nav
+                document.getElementById('screen-dashboard').style.paddingBottom = '6rem'; // 96px
+                document.getElementById('screen-store').style.paddingBottom = '6rem';
+            } else {
+                nav.classList.add('hidden');
+                document.getElementById('screen-dashboard').style.paddingBottom = '0';
+                 document.getElementById('screen-store').style.paddingBottom = '0';
             }
         }
 
@@ -1572,10 +1591,27 @@
             // Event listener para los clics con animación de color
             navWrapper.addEventListener('click', (e) => {
                 const clickedButton = e.target.closest('.nav-button');
+                if (!clickedButton) return;
+
+                const target = clickedButton.dataset.target;
+
                 // Evitar re-animar el botón que ya está activo
-                if (clickedButton && !clickedButton.classList.contains('active')) { 
+                if (!clickedButton.classList.contains('active')) {
                     movePill(clickedButton, true);
                 }
+
+                // Lógica para cambiar de pantalla
+                if (target === 'tienda') {
+                    const storeIframe = document.getElementById('store-iframe');
+                    // Cargar la URL solo si no ha sido cargada antes para evitar recargas innecesarias
+                    if (storeIframe.src !== 'https://mercacol.com.co/tienda/') {
+                        storeIframe.src = 'https://mercacol.com.co/tienda/';
+                    }
+                    showScreen('screen-store');
+                } else if (target === 'inicio') {
+                    showScreen('screen-dashboard');
+                }
+                // Aquí se podría añadir lógica para otros botones del menú (reportes, canjear, perfil)
             });
         });
 
