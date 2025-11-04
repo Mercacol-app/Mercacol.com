@@ -922,28 +922,28 @@
                 <!-- Tarjetas de Cupones -->
                 <div class="space-y-4 mb-8">
                     <!-- Cupón 1 -->
-                    <div class="bg-violet-50 rounded-2xl p-4 flex items-center space-x-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                            <img src="https://api.iconify.design/heroicons:scissors-solid.svg?color=%236d28d9" class="h-6 w-6" alt="Tijeras" />
+                    <div class="bg-white rounded-2xl p-4 flex items-center space-x-4 shadow-lg border border-gray-100">
+                        <div class="flex-shrink-0 w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center">
+                            <img src="https://api.iconify.design/heroicons:shopping-cart-solid.svg?color=%238b5cf6" class="h-6 w-6" alt="Carrito de Compra" />
                         </div>
                         <div class="flex-1 text-left">
                             <h3 class="text-lg font-bold text-gray-900">MERCA15</h3>
                             <p class="text-sm text-gray-500">15% OFF en tu primera compra</p>
                         </div>
-                        <button class="coupon-btn text-sm font-semibold bg-white text-purple-800 px-4 py-2 rounded-lg shadow-sm border border-violet-200 hover:bg-violet-100 transition-colors" data-code="MERCA15">
+                        <button class="coupon-btn text-sm font-semibold bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors" data-code="MERCA15">
                             Copiar
                         </button>
                     </div>
                     <!-- Cupón 2 -->
-                    <div class="bg-violet-50 rounded-2xl p-4 flex items-center space-x-4">
-                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                            <img src="https://api.iconify.design/heroicons:scissors-solid.svg?color=%236d28d9" class="h-6 w-6" alt="Tijeras" />
+                    <div class="bg-white rounded-2xl p-4 flex items-center space-x-4 shadow-lg border border-gray-100">
+                        <div class="flex-shrink-0 w-12 h-12 bg-violet-100 rounded-lg flex items-center justify-center">
+                            <img src="https://api.iconify.design/heroicons:shopping-cart-solid.svg?color=%238b5cf6" class="h-6 w-6" alt="Carrito de Compra" />
                         </div>
                         <div class="flex-1 text-left">
                             <h3 class="text-lg font-bold text-gray-900">MERCAVIP</h3>
                             <p class="text-sm text-gray-500">20% OFF en compras > $300.000</p>
                         </div>
-                        <button class="coupon-btn text-sm font-semibold bg-white text-purple-800 px-4 py-2 rounded-lg shadow-sm border border-violet-200 hover:bg-violet-100 transition-colors" data-code="MERCAVIP">
+                        <button class="coupon-btn text-sm font-semibold bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors" data-code="MERCAVIP">
                             Copiar
                         </button>
                     </div>
@@ -1529,12 +1529,12 @@
                     const code = btn.dataset.code;
                     navigator.clipboard.writeText(code).then(() => {
                         btn.textContent = '¡Copiado!';
-                        btn.classList.remove('bg-gray-200', 'text-gray-800');
-                        btn.classList.add('bg-green-500', 'text-white');
+                        btn.classList.remove('bg-gray-100', 'text-gray-700');
+                        btn.classList.add('bg-gradient-to-br', 'from-purple-700', 'to-purple-900', 'text-white');
                         setTimeout(() => {
                             btn.textContent = 'Copiar';
-                            btn.classList.remove('bg-green-500', 'text-white');
-                            btn.classList.add('bg-white', 'text-purple-800');
+                            btn.classList.remove('bg-gradient-to-br', 'from-purple-700', 'to-purple-900', 'text-white');
+                            btn.classList.add('bg-gray-100', 'text-gray-700');
                         }, 2000);
                     }).catch(err => {
                         console.error('Error al copiar el código: ', err);
