@@ -905,6 +905,52 @@
         </div>
 
         <!-- ============================================= -->
+        <!--            PANTALLA DE LA TIENDA (CUPONES)    -->
+        <!-- ============================================= -->
+        <div id="screen-store" class="screen flex-col h-screen bg-gray-100 p-6 justify-center items-center">
+            <div class="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl text-center">
+
+                <!-- Icono -->
+                <div class="mx-auto w-16 h-16 bg-gradient-to-br from-purple-700 to-purple-900 rounded-full flex items-center justify-center mb-4">
+                    <img src="https://api.iconify.design/heroicons:gift-solid.svg?color=%23ffffff" class="h-8 w-8 text-white" alt="Regalo" />
+                </div>
+
+                <!-- Título y Descripción -->
+                <h2 class="text-3xl font-bold text-gray-900">¡Ofertas Exclusivas!</h2>
+                <p class="text-gray-500 mt-2 mb-8">Copia un cupón y úsalo en nuestra tienda externa.</p>
+
+                <!-- Tarjetas de Cupones -->
+                <div class="space-y-4 mb-8">
+                    <!-- Cupón 1 -->
+                    <div class="border border-dashed border-gray-300 rounded-xl p-4 flex justify-between items-center">
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold text-purple-800">MERCA15</h3>
+                            <p class="text-sm text-gray-600">15% OFF en tu primera compra</p>
+                        </div>
+                        <button class="coupon-btn text-sm font-semibold bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors" data-code="MERCA15">
+                            Copiar
+                        </button>
+                    </div>
+                    <!-- Cupón 2 -->
+                    <div class="border border-dashed border-gray-300 rounded-xl p-4 flex justify-between items-center">
+                        <div class="text-left">
+                            <h3 class="text-lg font-bold text-purple-800">MERCAVIP</h3>
+                            <p class="text-sm text-gray-600">20% OFF en compras > $300.000</p>
+                        </div>
+                        <button class="coupon-btn text-sm font-semibold bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors" data-code="MERCAVIP">
+                            Copiar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Botón Principal -->
+                <button id="go-to-store-btn" class="w-full py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-purple-800 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    Ir a la Tienda
+                </button>
+            </div>
+        </div>
+
+        <!-- ============================================= -->
         <!--            PANTALLA DEL CARRITO DE COMPRAS    -->
         <!-- ============================================= -->
         <div id="screen-cart" class="screen flex-col min-h-screen bg-gray-50">
@@ -1210,13 +1256,17 @@
 
             // Controlar la visibilidad de la barra de navegación
             const nav = document.getElementById('bottom-navigation');
-            if (screenId === 'screen-dashboard') {
+            if (screenId === 'screen-dashboard' || screenId === 'screen-store') {
                 nav.classList.remove('hidden');
                 // Ajustar padding para que el contenido no quede debajo de la nav
                 document.getElementById('screen-dashboard').style.paddingBottom = '6rem'; // 96px
+                const storeScreen = document.getElementById('screen-store');
+                if (storeScreen) storeScreen.style.paddingBottom = '6rem';
             } else {
                 nav.classList.add('hidden');
                 document.getElementById('screen-dashboard').style.paddingBottom = '0';
+                const storeScreen = document.getElementById('screen-store');
+                if (storeScreen) storeScreen.style.paddingBottom = '0';
             }
         }
 
@@ -1459,6 +1509,33 @@
             const closeCartButton = document.getElementById('close-cart-button');
             const productGrid = document.getElementById('product-grid');
             const checkoutButton = document.getElementById('checkout-button');
+            const goToStoreBtn = document.getElementById('go-to-store-btn');
+            const couponBtns = document.querySelectorAll('.coupon-btn');
+
+            if (goToStoreBtn) {
+                goToStoreBtn.addEventListener('click', () => {
+                    window.open('https://mercacol.com.co/', '_blank');
+                });
+            }
+
+            couponBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const code = btn.dataset.code;
+                    navigator.clipboard.writeText(code).then(() => {
+                        btn.textContent = '¡Copiado!';
+                        btn.classList.remove('bg-gray-200', 'text-gray-800');
+                        btn.classList.add('bg-green-500', 'text-white');
+                        setTimeout(() => {
+                            btn.textContent = 'Copiar';
+                            btn.classList.remove('bg-green-500', 'text-white');
+                            btn.classList.add('bg-gray-200', 'text-gray-800');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Error al copiar el código: ', err);
+                        alert('No se pudo copiar el código.');
+                    });
+                });
+            });
 
             if (cartButton) {
                 cartButton.addEventListener('click', () => showScreen('screen-cart'));
@@ -1593,9 +1670,7 @@
 
                 // Lógica para cambiar de pantalla
                 if (target === 'tienda') {
-                    // Abrir la tienda en una nueva pestaña
-                    window.open('https://mercacol.com.co/', '_blank');
-                    // No cambiar de pantalla en la app, mantener al usuario en el dashboard
+                    showScreen('screen-store');
                 } else if (target === 'inicio') {
                     showScreen('screen-dashboard');
                 }
