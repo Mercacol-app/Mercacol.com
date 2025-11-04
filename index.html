@@ -905,13 +905,6 @@
         </div>
 
         <!-- ============================================= -->
-        <!--            PANTALLA DE LA TIENDA (IFRAME)     -->
-        <!-- ============================================= -->
-        <div id="screen-store" class="screen flex-col h-screen bg-white">
-            <iframe id="store-iframe" class="w-full h-full border-none" src=""></iframe>
-        </div>
-
-        <!-- ============================================= -->
         <!--            PANTALLA DEL CARRITO DE COMPRAS    -->
         <!-- ============================================= -->
         <div id="screen-cart" class="screen flex-col min-h-screen bg-gray-50">
@@ -1217,15 +1210,13 @@
 
             // Controlar la visibilidad de la barra de navegación
             const nav = document.getElementById('bottom-navigation');
-            if (screenId === 'screen-dashboard' || screenId === 'screen-store') {
+            if (screenId === 'screen-dashboard') {
                 nav.classList.remove('hidden');
                 // Ajustar padding para que el contenido no quede debajo de la nav
                 document.getElementById('screen-dashboard').style.paddingBottom = '6rem'; // 96px
-                document.getElementById('screen-store').style.paddingBottom = '6rem';
             } else {
                 nav.classList.add('hidden');
                 document.getElementById('screen-dashboard').style.paddingBottom = '0';
-                 document.getElementById('screen-store').style.paddingBottom = '0';
             }
         }
 
@@ -1602,12 +1593,9 @@
 
                 // Lógica para cambiar de pantalla
                 if (target === 'tienda') {
-                    const storeIframe = document.getElementById('store-iframe');
-                    // Cargar la URL solo si no ha sido cargada antes para evitar recargas innecesarias
-                    if (storeIframe.src !== 'https://mercacol.com.co/tienda/') {
-                        storeIframe.src = 'https://mercacol.com.co/tienda/';
-                    }
-                    showScreen('screen-store');
+                    // Abrir la tienda en una nueva pestaña
+                    window.open('https://mercacol.com.co/', '_blank');
+                    // No cambiar de pantalla en la app, mantener al usuario en el dashboard
                 } else if (target === 'inicio') {
                     showScreen('screen-dashboard');
                 }
