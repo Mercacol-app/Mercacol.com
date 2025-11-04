@@ -911,40 +911,46 @@
             <div class="w-full max-w-md bg-white p-8 rounded-3xl shadow-xl text-center">
 
                 <!-- Icono -->
-                <div class="mx-auto w-16 h-16 bg-gradient-to-br from-purple-700 to-purple-900 rounded-full flex items-center justify-center mb-4">
+                <div class="mx-auto w-16 h-16 bg-gradient-to-br from-green-400 to-lime-400 rounded-full flex items-center justify-center mb-4">
                     <img src="https://api.iconify.design/heroicons:gift-solid.svg?color=%23ffffff" class="h-8 w-8 text-white" alt="Regalo" />
                 </div>
 
                 <!-- Título y Descripción -->
                 <h2 class="text-3xl font-bold text-gray-900">¡Ofertas Exclusivas!</h2>
-                <p class="text-gray-500 mt-2 mb-8">Copia un cupón y úsalo en nuestra tienda externa.</p>
+                <p class="text-gray-500 mt-2 mb-8">¡Aprovecha estos descuentos exclusivos en nuestra tienda!</p>
 
                 <!-- Tarjetas de Cupones -->
                 <div class="space-y-4 mb-8">
                     <!-- Cupón 1 -->
-                    <div class="border border-dashed border-gray-300 rounded-xl p-4 flex justify-between items-center">
-                        <div class="text-left">
-                            <h3 class="text-lg font-bold text-purple-800">MERCA15</h3>
-                            <p class="text-sm text-gray-600">15% OFF en tu primera compra</p>
+                    <div class="bg-violet-50 rounded-2xl p-4 flex items-center space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                            <img src="https://api.iconify.design/heroicons:scissors-solid.svg?color=%236d28d9" class="h-6 w-6" alt="Tijeras" />
                         </div>
-                        <button class="coupon-btn text-sm font-semibold bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors" data-code="MERCA15">
+                        <div class="flex-1 text-left">
+                            <h3 class="text-lg font-bold text-gray-900">MERCA15</h3>
+                            <p class="text-sm text-gray-500">15% OFF en tu primera compra</p>
+                        </div>
+                        <button class="coupon-btn text-sm font-semibold bg-white text-purple-800 px-4 py-2 rounded-lg shadow-sm border border-violet-200 hover:bg-violet-100 transition-colors" data-code="MERCA15">
                             Copiar
                         </button>
                     </div>
                     <!-- Cupón 2 -->
-                    <div class="border border-dashed border-gray-300 rounded-xl p-4 flex justify-between items-center">
-                        <div class="text-left">
-                            <h3 class="text-lg font-bold text-purple-800">MERCAVIP</h3>
-                            <p class="text-sm text-gray-600">20% OFF en compras > $300.000</p>
+                    <div class="bg-violet-50 rounded-2xl p-4 flex items-center space-x-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-white rounded-lg flex items-center justify-center">
+                            <img src="https://api.iconify.design/heroicons:scissors-solid.svg?color=%236d28d9" class="h-6 w-6" alt="Tijeras" />
                         </div>
-                        <button class="coupon-btn text-sm font-semibold bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 transition-colors" data-code="MERCAVIP">
+                        <div class="flex-1 text-left">
+                            <h3 class="text-lg font-bold text-gray-900">MERCAVIP</h3>
+                            <p class="text-sm text-gray-500">20% OFF en compras > $300.000</p>
+                        </div>
+                        <button class="coupon-btn text-sm font-semibold bg-white text-purple-800 px-4 py-2 rounded-lg shadow-sm border border-violet-200 hover:bg-violet-100 transition-colors" data-code="MERCAVIP">
                             Copiar
                         </button>
                     </div>
                 </div>
 
                 <!-- Botón Principal -->
-                <button id="go-to-store-btn" class="w-full py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-white bg-purple-800 hover:bg-purple-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                <button id="go-to-store-btn" class="w-full py-3 px-4 border border-transparent rounded-xl shadow-lg text-base font-medium text-black bg-gradient-to-br from-green-400 to-lime-400 hover:from-green-500 hover:to-lime-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500">
                     Ir a la Tienda
                 </button>
             </div>
@@ -1528,7 +1534,7 @@
                         setTimeout(() => {
                             btn.textContent = 'Copiar';
                             btn.classList.remove('bg-green-500', 'text-white');
-                            btn.classList.add('bg-gray-200', 'text-gray-800');
+                            btn.classList.add('bg-white', 'text-purple-800');
                         }, 2000);
                     }).catch(err => {
                         console.error('Error al copiar el código: ', err);
