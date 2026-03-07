@@ -27,14 +27,48 @@
             background-size: cover;
         }
 
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+
+            .bg-hero, .bg-secondary, .bg-tertiary {
+                background-position: center center;
+                /* Helps avoid the extreme zoom on mobile browsers while keeping cover */
+            }
+
+            /* Para que la imagen se vea más con sus dimensiones en móviles sin zoom extremo */
+            .bg-hero {
+                background-size: cover;
+            }
+        }
+
         /* High quality coffee images */
         .bg-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://mercacol.com.co/wp-content/uploads/2026/03/e6fc9fb7-bbce-453b-afe9-acf78283c8db.jpeg');
         }
 
+        @media (max-width: 768px) {
+            .bg-hero {
+                /* Asegura que toda la imagen se vea en mobile. 100% auto adaptará el ancho y mantendrá la proporción */
+                background-size: 100% auto;
+                background-position: top center;
+            }
+            .hero-section-mobile {
+                height: 100vh;
+                height: 100svh; /* viewport moderno */
+                background-color: #0f0f0f;
+                background-size: 100% auto !important;
+                background-position: top center !important;
+                background-repeat: no-repeat !important;
+                justify-content: flex-end; /* Mueve el texto hacia abajo para no tapar la imagen */
+                padding-bottom: 5rem;
+            }
+        }
+
         .bg-secondary {
             background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://mercacol.com.co/wp-content/uploads/2026/03/a13fdfb8-8c6c-40ed-90ad-f38aedc46db0.jpeg');
-            transition: background-image 1.5s ease-in-out;
+            transition: background-image 1.5s ease-in-out, background-size 1.5s ease-in-out;
         }
 
         .bg-secondary.hover-reveal, .bg-secondary:hover {
@@ -77,6 +111,13 @@
         .reveal-right.active {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        /* Mobile Specific Flip Card Trigger */
+        @media (max-width: 768px) {
+            .flip-card.hover-reveal .flip-card-inner {
+                transform: rotateY(180deg);
+            }
         }
 
         /* Custom Buttons */
@@ -145,8 +186,10 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="parallax bg-hero h-screen flex flex-col justify-center items-center text-center px-4 relative">
-        <div class="reveal max-w-4xl mx-auto">
+    <section class="parallax bg-hero h-screen hero-section-mobile flex flex-col justify-center items-center text-center px-4 relative">
+        <!-- Overlay for better text readability on mobile while still letting the image show -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/90 md:bg-transparent pointer-events-none"></div>
+        <div class="reveal max-w-4xl mx-auto z-10 p-6 md:p-0">
             <h2 class="text-gold-500 text-lg md:text-2xl tracking-[0.3em] uppercase mb-4 text-[#d4af37]">Café 100% Colombiano</h2>
             <h1 class="text-6xl md:text-8xl font-extrabold text-white tracking-tighter mb-6">ORIGEN SPECIAL</h1>
             <p class="text-lg md:text-2xl text-gray-300 font-light mb-10 max-w-2xl mx-auto">
@@ -189,8 +232,8 @@
     </section>
 
     <!-- Secondary Parallax Section -->
-    <section class="parallax bg-secondary h-[70vh] flex items-center justify-center text-center px-4">
-        <div class="reveal max-w-3xl bg-black/60 backdrop-blur-sm p-12 rounded-3xl border border-white/10">
+    <section class="parallax bg-secondary h-[50vh] md:h-[70vh] flex items-center justify-center text-center px-4 relative overflow-hidden transition-all duration-[1.5s] bg-center md:bg-fixed bg-scroll" style="background-size: cover;">
+        <div class="reveal max-w-3xl bg-black/60 backdrop-blur-sm p-8 md:p-12 rounded-3xl border border-white/10 relative z-10">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">El Proceso Artesanal</h2>
             <p class="text-xl text-gray-300 font-light">
                 Desde el lavado hasta el secado al sol, cuidamos cada detalle para resaltar las características excepcionales de nuestro origen. Un tributo a la tradición colombiana.
@@ -358,13 +401,27 @@
 
                 if (secondaryBg) {
                     const secondaryTop = secondaryBg.getBoundingClientRect().top;
-                    // Trigger the background change when it reaches the middle of the viewport
-                    if (secondaryTop < windowHeight / 2 && secondaryTop > -windowHeight / 2) {
+                    // En móviles, el scroll es más agresivo y la ventana más pequeña.
+                    // Activamos la revelación (background y tarjeta) cuando están visibles en el viewport.
+                    if (secondaryTop < windowHeight * 0.75 && secondaryTop > -windowHeight * 0.5) {
                         secondaryBg.classList.add('hover-reveal');
                     } else {
                         secondaryBg.classList.remove('hover-reveal');
                     }
                 }
+
+                // Lógica similar para la flip-card en mobile para que se voltee solita al scrollear
+                const flipCards = document.querySelectorAll('.flip-card');
+                flipCards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    if (window.innerWidth <= 768) {
+                        if (cardTop < windowHeight * 0.7 && cardTop > -windowHeight * 0.2) {
+                            card.classList.add('hover-reveal');
+                        } else {
+                            card.classList.remove('hover-reveal');
+                        }
+                    }
+                });
             };
 
             window.addEventListener('scroll', revealOnScroll);
